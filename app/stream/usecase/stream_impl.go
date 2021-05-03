@@ -3,7 +3,7 @@ package usecase
 import (
 	"context"
 
-	"github.com/leewei05/live-ddd/app/stream/adapter"
+	adapter "github.com/leewei05/live-ddd/app/stream/adapter/repository"
 )
 
 type streamUseCase struct {
@@ -17,6 +17,7 @@ func NewStreamUseCase(r adapter.Repository) *streamUseCase {
 }
 
 func (s *streamUseCase) createStream(ctx context.Context, ID, name, owner string) error {
+	s.streamRepo.Create(context.Background(), ID, name, owner)
 
 	return nil
 }
